@@ -4,18 +4,18 @@ require_once 'header.php';
 
 require_once 'menu.php';
 
+if (isset($_POST['text'])) {
+    require_once 'profile_change.php';
+}
+
 $user = $_GET['view'] ?? $_SESSION['user'];
 
-$result = querySQL('SELECT * FROM members WHERE user="$user"');
+$result = querySQL("SELECT * FROM profiles WHERE user='$user'");
 
 $row = $result->fetch();
-$text = $row['text'] ?? "No info about this blud";
+$text = (isset($row['text']) && $row['text'] != '') ? $row['text'] : "No info about this blud";
 
-$src = "no_photo.jpg";
-
-if (file_exists("$user.jpg")) {
-    $src = "$user.jpg";
-}
+$src = file_exists("avatars/photo_$user.jpg") ? "avatars/photo_$user.jpg" : "no_photo.jpg";
 
 echo <<<_PROF
                 <div class="user-info">

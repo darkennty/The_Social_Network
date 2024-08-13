@@ -9,12 +9,18 @@ body {
     display: flex;
     justify-content: center;
 
-    > #logo-pic {
+    > a {
+        text-decoration: none;
+    }
+
+    #logo-pic {
         width: 180px;
         height: 129px;
     }
-    > .brand-name {
-        padding-top: 60px;
+    .brand-name {
+        position: relative;
+        bottom: 38px;
+        color: black;
         font-weight: 700;
         font-size: 1.8em;
     }
@@ -25,7 +31,7 @@ body {
     width: 70%;
     display: flex;
     justify-content: space-around;
-    height: 400px;
+    height: 450px;
 }
 
 #features {
@@ -57,9 +63,28 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*justify-content: center;*/
     border-radius: 10px;
     width: 60%;
+
+    > form {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        * {
+            margin: 3px;
+        }
+        textarea {
+            resize: none;
+        }
+
+    }
+}
+
+.about-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #app-info {
@@ -124,8 +149,11 @@ body {
 }
 
 .user-info {
-    #avatar {
+    .avatar-div {
         width: 25%;
+    }
+    #avatar {
+        width: 100%;
         border: 2px solid black;
         border-radius: 10px;
     }
@@ -141,4 +169,43 @@ body {
 
 .centered-text {
     margin-top: 25%;
+}
+
+#close-btn {
+    text-decoration: none;
+    color: black;
+}
+
+#alert {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: gray;
+    border-radius: 10px;
+    top: 400px;
+    button {
+        margin: 5px;
+    }
+    div {
+        margin: 0 auto;
+    }
+}
+
+.friends {
+    width: 40%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.friend {
+    width: 100%;
+    display: flex;
+    /*justify-content: space-evenly;*/
+    align-items: center;
+    img {
+        width: 75px;
+        margin-right: 40px;
+    }
 }

@@ -4,18 +4,27 @@
  * @var string $randstr
  * @var boolean $logged
  * @var string $user
+ * @var string $location
  */
+
+if ($location == "&nbsp;" || $location == "") {
+    $location = "&nbsp;";
+    $close_button = "&nbsp;";
+} else {
+    $close_button = "<a id='close-btn' href='page.php?r=$randstr'>&#10006;</a>";
+}
 
 if ($logged) {
     echo <<<_MENU
         <div id="app-info">
             <p class="hello">What's up, $user</p>
-            <p class="loc">&nbsp;</p>
+            <p class="loc">$close_button $location</p>
         </div>
         <div id="menu">
             <div id="features">
                 <a href="profile.php?r=$randstr&view=$user"><span class="btn-text">My page</span></a>
                 <a href="friends.php?r=$randstr&view=$user"><span class="btn-text">My bluds</span></a>
+                <a href="subscribers.php?r=$randstr&view=$user"><span class="btn-text">My subway subs</span></a>
                 <a href="members.php?r=$randstr"><span class="btn-text">My members</span></a>
                 <a href="messages.php?r=$randstr&view=$user"><span class="btn-text">My messages</span></a>
                 <a href="logout_page.php?r=$randstr"><span class="btn-text">My log out</span></a>

@@ -7,6 +7,8 @@
 
 $_COOKIE['location'] = 'MATInder: My members';
 
+$location = "Members of MATInder";
+
 require_once 'header.php';
 
 require_once 'menu.php';

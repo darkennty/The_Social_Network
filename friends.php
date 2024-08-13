@@ -3,11 +3,18 @@
 /**
  * @var boolean $logged
  * @var string $randstr
+ * @var string $user
  */
 
 $_COOKIE['location'] = 'MATInder: My bluds';
 
 require_once 'header.php';
+
+if ($_GET['view'] == $_SESSION['user']) {
+    $location = "My bluds";
+} else {
+    $location = "$user's profile";
+}
 
 require_once 'menu.php';
 
@@ -18,16 +25,18 @@ echo <<<_BLUDS
             <div class="friends">
 _BLUDS;
 
-$result = querySQL("SELECT * FROM friends WHERE user='$user'");
+$result = querySQL("SELECT * FROM friends WHERE user='$user' OR friend='$user'");
 
 if ($result->rowCount() != 0) {
     while ($row = $result->fetch()) {
-        $user = $row['user'];
+        $friend = $user == $row['user'] ? $row['friend'] : $row['user'];
+
+        $src = file_exists("avatars/photo_$friend.jpg") ? "avatars/photo_$friend.jpg" : "no_photo.jpg";
         echo <<<_BLUD
-                <div>
-                    <img src='photo_$user.jpg' alt='no_photo.jpg'><a href='profile.php?r=$randstr&view=$user'>$user</a>
-                </div>;
-_BLUD;
+                <div class="friend">
+                    <img src='$src' alt='No_photO'><a href='profile.php?r=$randstr&view=$friend'>$friend</a>
+                </div>
+        _BLUD;
     }
 } else {
     echo "<p>You don't have any friends, man.</p>";

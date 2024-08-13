@@ -15,6 +15,14 @@ CREATE TABLE IF NOT EXISTS the_social_network.messages (
     INDEX(recip(6))
 );
 
+CREATE TABLE IF NOT EXISTS friend_requests (
+    sender VARCHAR(16),
+    receiver VARCHAR(16),
+
+    INDEX(sender(6)),
+    INDEX(receiver(6))
+);
+
 CREATE TABLE IF NOT EXISTS the_social_network.friends (
     user VARCHAR(16),
     friend VARCHAR(16),
@@ -28,3 +36,4 @@ CREATE TABLE IF NOT EXISTS the_social_network.profiles (
 
     INDEX(user(6))
 );
+

@@ -44,7 +44,7 @@ echo <<<_SIGN
                 <div>$error</div>
                 <div id="username">
                     <label>Username: </label>
-                    <input type="text" maxlength="20" name="user" onblur="checkUser(this)">
+                    <input type="text" maxlength="20" name="user" onblur="checkUser(this)" onkeydown="checkName(event)">
                 </div>
                 <div id='used'>&nbsp;</div>
                 <div>

@@ -8,11 +8,11 @@
 
 $_COOKIE['location'] = 'MATInder: My profile change';
 
-require_once 'header.php';
+require_once '../page/header.php';
 
 $location = "My profile change";
 
-require_once 'menu.php';
+require_once '../page/menu.php';
 
 $result = querySQL("SELECT * FROM profiles WHERE user='$user'");
 $row = $result->fetch();

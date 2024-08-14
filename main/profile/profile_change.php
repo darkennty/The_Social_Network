@@ -16,7 +16,7 @@ if (isset($_SESSION['user'])) {
     }
 
     if (isset($_FILES['image']['name'])) {
-        $source = "avatars/photo_$user.jpg";
+        $source = "../../avatars/photo_$user.jpg";
         move_uploaded_file($_FILES['image']['tmp_name'], $source);
     }
 }

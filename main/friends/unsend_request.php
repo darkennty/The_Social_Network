@@ -1,6 +1,6 @@
 <?php
 
-require_once 'properties.php';
+require_once '../properties.php';
 
 if (isset($_POST['user']) && isset($_POST['friend'])) {
     $user = $_POST['user'];

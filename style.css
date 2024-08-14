@@ -194,7 +194,7 @@ body {
     }
 }
 
-.friends {
+.friends, .subscribers {
     width: 40%;
     height: 80%;
     display: flex;

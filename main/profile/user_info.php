@@ -3,6 +3,13 @@
 require_once '../page/header.php';
 
 $profile_user = $_GET['view'] ?? $_SESSION['user'];
+$result = querySQL("SELECT * FROM members WHERE user='$profile_user'");
+
+if ($result->rowCount() == 0) {
+    $location = "Am I tweakin'?";
+    require_once '../page/menu.php';
+    die("<div class='centered-text'><p>No such blud in our social network! Sorry.</p></div>");
+}
 
 if ($_GET['view'] == $_SESSION['user']) {
     $location = "My profile";
@@ -15,8 +22,6 @@ require_once '../page/menu.php';
 if (isset($_POST['text'])) {
     require_once 'profile_change.php';
 }
-
-$result = querySQL("SELECT * FROM members WHERE user='$profile_user'");
 
 if ($result->rowCount() != 0) {
     $result = querySQL("SELECT * FROM profiles WHERE user='$profile_user'");

@@ -25,7 +25,7 @@ if ($logged) {
                 <a href="../profile/profile.php?r=$randstr&view=$user"><span class="btn-text">My page</span></a>
                 <a href="../friends/friends.php?r=$randstr&view=$user"><span class="btn-text">My bluds</span></a>
                 <a href="../subscribers/subscribers.php?r=$randstr&view=$user"><span class="btn-text">My subway subs</span></a>
-                <a href="../members/members.php?r=$randstr&view=$user"><span class="btn-text">My members</span></a>
+                <a href="../members/members.php?r=$randstr"><span class="btn-text">My members</span></a>
                 <a href="../messages/messages.php?r=$randstr&view=$user"><span class="btn-text">My messages</span></a>
                 <a href="../logout/logout_page.php?r=$randstr"><span class="btn-text">My log out</span></a>
             </div>

@@ -53,7 +53,7 @@ function warning(type, user, friend) {
             btnYes.addEventListener('click', function () {
                 $.post
                 (
-                    "friend_request.php",
+                    "..\\friends\\friend_request.php",
                     { user: user,
                         friend: friend },
                     function () {
@@ -72,7 +72,7 @@ function warning(type, user, friend) {
             btnYes.addEventListener('click', function () {
                 $.post
                 (
-                    "friend_admit.php",
+                    "..\\friends\\friend_admit.php",
                     { user: user,
                         friend: friend },
                     function () {
@@ -91,10 +91,11 @@ function warning(type, user, friend) {
             btnYes.addEventListener('click', function () {
                 $.post
                 (
-                    "friend_delete.php",
+                    "..\\friends\\friend_delete.php",
                     { user: user,
                         friend: friend },
                     function () {
+                        console.log('sus');
                         location.reload();
                     }
                 )
@@ -109,7 +110,7 @@ function warning(type, user, friend) {
         case 'unsend':
             $.post
             (
-                "unsend_request.php",
+                "..\\friends\\unsend_request.php",
                 { user: user,
                     friend: friend },
                 function () {

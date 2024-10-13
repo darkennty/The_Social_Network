@@ -32,6 +32,6 @@ echo <<<_INIT
     </head>
     <body>
         <div id="header">
-            <a href="../page/page.php?r=$randstr"><img id="logo-pic" src="../../images/logo.png" alt=""><span class="brand-name">nder. Find your blud.</span></a>
+            <a href="../page/home.php?r=$randstr"><img id="logo-pic" src="../../images/logo.png" alt=""><span class="brand-name">nder. Find your blud.</span></a>
         </div>
 _INIT;

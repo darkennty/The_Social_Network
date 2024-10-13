@@ -64,7 +64,7 @@ body {
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    width: 60%;
+    width: 70%;
 
     > form {
         width: 80%;
@@ -100,7 +100,7 @@ body {
 }
 
 .loc {
-    width: 60%;
+    width: 70%;
 }
 
 #log-in, #sign-up, .centered-div {
@@ -203,6 +203,7 @@ body {
 }
 
 .friend {
+    margin: 3px 0;
     width: 100%;
     display: flex;
     /*justify-content: space-evenly;*/
@@ -211,4 +212,135 @@ body {
         width: 75px;
         margin-right: 40px;
     }
+}
+
+#messages {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#chatters {
+    overflow: auto;
+    .chatter_img {
+        border-radius: 50%;
+    }
+    .friend {
+        box-sizing: border-box;
+        padding: 5px;
+        background-color: #cccccc;
+        border-radius: 5px;
+    }
+    background-color: #dadada;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 30%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#chat {
+    > * {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #dadada;
+    /*padding: 5px;*/
+    border: 2px solid black;
+
+    border-radius: 10px;
+    width: 60%;
+    height: 95%;
+}
+
+.message {
+    border-radius: 15px;
+    max-width: 200px;
+    p {
+        text-wrap: wrap;
+        word-wrap: break-word;
+    }
+}
+
+.send-section {
+    > * {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+#chat-field {
+    height: 70%;
+    overflow-x: clip;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    /*display: flex;*/
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.who, .send-section {
+    height: 12%;
+    background-color: #bbbbbb;
+}
+
+.who {
+    border-radius: 8px 8px 0 0;
+}
+
+.send-section {
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    justify-content: center;
+    form {
+        width: 90%;
+        [type="text"] {
+            width: 100%;
+        }
+        #message-field {
+            width: 75%;
+        }
+        #send-btn {
+            width: 20%
+        }
+    }
+}
+
+.members, .subscribers, .friends {
+    overflow: scroll;
+    width: 40%;
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+.members::-webkit-scrollbar {
+    width: 0;
+}
+
+.subscribers::-webkit-scrollbar {
+    width: 0;
+}
+
+.friends::-webkit-scrollbar {
+    width: 0;
+}
+
+.error {
+    color: red;
 }

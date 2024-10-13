@@ -14,4 +14,3 @@ if (isset($_POST['user'])) {
             "Okay, Kylie, okay! This username '$user' is available</span>";
     }
 }
-?>

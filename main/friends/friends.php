@@ -15,7 +15,7 @@ if (isset($_GET['view'])) {
 
     if ($result->rowCount() == 0) {
         $location = "Am I tweakin'?";
-        require_once '../page/menu.php';
+        require_once '../page/body.php';
         die("<div class='centered-text'><p>No such blud in our social network! Sorry.</p></div>");
     }
 } else {
@@ -28,7 +28,7 @@ if ($_GET['view'] === $_SESSION['user']) {
     $location = "$blud's bluds";
 }
 
-require_once '../page/menu.php';
+require_once '../page/body.php';
 
 echo "<h4>$blud's  bluds</h4>";
 

@@ -7,25 +7,23 @@ $result = querySQL("SELECT * FROM members WHERE user='$profile_user'");
 
 if ($result->rowCount() == 0) {
     $location = "Am I tweakin'?";
-    require_once '../page/menu.php';
+    require_once '../page/body.php';
     die("<div class='centered-text'><p>No such blud in our social network! Sorry.</p></div>");
-}
-
-if ($_GET['view'] == $_SESSION['user']) {
-    $location = "My profile";
 } else {
-    $location = "$profile_user's profile";
-}
 
-require_once '../page/menu.php';
+    if ($_GET['view'] == $_SESSION['user']) {
+        $location = "My profile";
+    } else {
+        $location = "$profile_user's profile";
+    }
 
-if (isset($_POST['text'])) {
-    require_once 'profile_change.php';
-}
+    require_once '../page/body.php';
 
-if ($result->rowCount() != 0) {
+    if (isset($_POST['text'])) {
+        require_once 'profile_change.php';
+    }
+
     $result = querySQL("SELECT * FROM profiles WHERE user='$profile_user'");
-
     $row = $result->fetch();
     $text = (isset($row['text']) && $row['text'] != '') ? $row['text'] : "No info about this blud";
 
@@ -42,7 +40,5 @@ if ($result->rowCount() != 0) {
                         </div>
                     </div>
     _PROF;
-} else {
-    die("<div class='centered-text'><p>No such blud in our social network! Sorry.</p></div>");
 }
 

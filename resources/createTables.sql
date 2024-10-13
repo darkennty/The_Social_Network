@@ -1,18 +1,17 @@
 CREATE TABLE IF NOT EXISTS the_social_network.members (
-    user VARCHAR(16),
-    pass VARCHAR(16),
+    user VARCHAR(16) PRIMARY KEY,
+    pass VARCHAR(60),
     INDEX(user(6))
 );
 
 CREATE TABLE IF NOT EXISTS the_social_network.messages (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    auth VARCHAR(16),
-    recip VARCHAR(16),
-    pm CHAR(1),
-    time INT UNSIGNED,
+    author VARCHAR(16),
+    recipent VARCHAR(16),
+    date DATETIME,
     message VARCHAR(4096),
-    INDEX(auth(6)),
-    INDEX(recip(6))
+    INDEX(author(6)),
+    INDEX(recipent(6))
 );
 
 CREATE TABLE IF NOT EXISTS friend_requests (
@@ -31,7 +30,7 @@ CREATE TABLE IF NOT EXISTS the_social_network.friends (
 );
 
 CREATE TABLE IF NOT EXISTS the_social_network.profiles (
-    user VARCHAR(16),
+    user VARCHAR(16) PRIMARY KEY,
     text VARCHAR(4096),
 
     INDEX(user(6))

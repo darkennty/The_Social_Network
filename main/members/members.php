@@ -11,10 +11,10 @@ $location = "Members of MATInder";
 
 require_once '../page/header.php';
 
-require_once '../page/menu.php';
+require_once '../page/body.php';
 
 echo <<<_BLUDS
-            <h4>All members of MATInder</h4>
+            <h4>All members of MATInder (except you)</h4>
             <div class="members">
 _BLUDS;
 
@@ -26,7 +26,14 @@ while ($row = $result->fetch()) {
     if ($_SESSION['user'] == $user) {
         continue;
     } else {
-        echo "<a href='../profile/profile.php?r=$randstr&view=$user'>$user</a>";
+//        echo "<a href='../profile/profile.php?r=$randstr&view=$user'>$user</a><br />";
+        $src = file_exists("../../avatars/photo_$user.jpg") ? "../../avatars/photo_$user.jpg" : "../../images/no_photo.jpg";
+
+        echo <<<_BLUD
+                <div class="friend">
+                    <img src='$src' alt='No_photO'><a href='../profile/profile.php?r=$randstr&view=$user'>$user</a>
+                </div>
+        _BLUD;
     }
 }
 

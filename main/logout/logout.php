@@ -14,7 +14,7 @@ if (isset($_SESSION['user'])) {
 }
 
 echo <<<_LOGOUT
-        <p id="logout-text">You have been logged out. Now <a href="../page/page.php?r=$randstr">click here</a> to go to the home page.</p>
+        <p id="logout-text">You have been logged out. Now <a href="../page/home.php?r=$randstr">click here</a> to go to the home page.</p>
     </body>
 </html> 
 _LOGOUT;

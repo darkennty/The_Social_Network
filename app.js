@@ -13,14 +13,31 @@ function checkUser(user) {
         }
     )
 }
-function checkPass(pass) {
-    let str = pass.value;
-    if (str.length >= 8 && /[A-Z]+/.test(str) && /[a-z]+/.test(str) && /[0-9]+/.test(str)) {
-        $('#weak').html('&nbsp;');
-        $('#submit').prop('disabled', false);
-    } else {
+function checkPass() {
+    let str = $('#passwd').val();
+    let check_str = $('#rep-passwd').val();
+    let flag = true;
+
+    if (str.length <= 8 || !(/[A-Z]+/.test(str)) || !(/[a-z]+/.test(str)) || !(/[0-9]+/.test(str))) {
         $('#weak').html('Weak! Bill Collector can easily get it! (Use upper-, lowercase letters and numbers, dummy..)');
         $('#submit').prop('disabled', true);
+        flag = false;
+    } else {
+        $('#weak').html('&nbsp;');
+        if (flag) {
+            $('#submit').prop('disabled', false);
+        }
+    }
+
+    if (str !== check_str || str === '') {
+        $('#not-match').html('Passwords don\'t match, wtf?! You might wanna check again!');
+        $('#submit').prop('disabled', true);
+        flag = false;
+    } else {
+        $('#not-match').html('&nbsp;');
+        if (flag) {
+            $('#submit').prop('disabled', false);
+        }
     }
 }
 
@@ -127,4 +144,43 @@ function warning(type, user, friend) {
 
     alert.append(btns);
     workspace.append(alert);
+}
+
+function checkInput(msg) {
+    if (msg.value === '') {
+        $('#send-btn').prop('disabled', true);
+    } else {
+        $('#send-btn').prop('disabled', false);
+    }
+}
+
+function getContent(user, friend, stamp)
+{
+    let queryString = {
+        'user': user,
+        'friend': friend,
+        'stamp': stamp,
+    };
+    function getRequest() {
+        $.ajax(
+            {
+                type: 'GET',
+                url: 'getUpdates.php',
+                data: queryString,
+                success: function(data){
+                    if (data === "YES") {
+                        location.reload();
+                    }
+
+                    console.log(data);
+                    setTimeout(
+                        getRequest,
+                        500
+                    );
+                }
+            }
+        );
+    }
+
+    getRequest()
 }

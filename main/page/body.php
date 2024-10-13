@@ -11,7 +11,7 @@ if ($location == "&nbsp;" || $location == "") {
     $location = "&nbsp;";
     $close_button = "&nbsp;";
 } else {
-    $close_button = "<a id='close-btn' href='../page/page.php?r=$randstr'>&#10006;</a>";
+    $close_button = "<a id='close-btn' href='../page/home.php?r=$randstr'>&#10006;</a>";
 }
 
 if ($logged) {
@@ -26,7 +26,7 @@ if ($logged) {
                 <a href="../friends/friends.php?r=$randstr&view=$user"><span class="btn-text">My bluds</span></a>
                 <a href="../subscribers/subscribers.php?r=$randstr&view=$user"><span class="btn-text">My subway subs</span></a>
                 <a href="../members/members.php?r=$randstr"><span class="btn-text">My members</span></a>
-                <a href="../messages/messages.php?r=$randstr&view=$user"><span class="btn-text">My messages</span></a>
+                <a href="../messages/messages.php?r=$randstr"><span class="btn-text">My messages</span></a>
                 <a href="../logout/logout_page.php?r=$randstr"><span class="btn-text">My log out</span></a>
             </div>
             <div id="workspace">

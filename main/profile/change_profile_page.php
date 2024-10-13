@@ -12,7 +12,7 @@ require_once '../page/header.php';
 
 $location = "My profile change";
 
-require_once '../page/menu.php';
+require_once '../page/body.php';
 
 $result = querySQL("SELECT * FROM profiles WHERE user='$user'");
 $row = $result->fetch();
@@ -34,6 +34,7 @@ if (isset($_GET['view']) && $_GET['view'] == $_SESSION['user']) {
     _FORM;
 } else {
     echo <<<_END
+                <div class='centered-text'><p>Huh? You cannot change profiles of others!</p></div>
                 </div>
             </div>
         </body>

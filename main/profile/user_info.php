@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @var string $randstr
+ */
+
 require_once '../page/header.php';
 
 $profile_user = $_GET['view'] ?? $_SESSION['user'];
@@ -29,6 +33,14 @@ if ($result->rowCount() == 0) {
 
     $src = file_exists("../../avatars/photo_$profile_user.jpg") ? "../../avatars/photo_$profile_user.jpg" : "../../images/no_photo.jpg";
 
+
+    if ($_GET['view'] == $_SESSION['user']) {
+        $friends_tho = "";
+    } else {
+        $friends_tho = "<a href='../friends/friends.php?r=$randstr&view=$profile_user'>Friends</a><br><a href='../subscribers/subscribers.php?r=$randstr&view=$profile_user'>Subs</a>";
+    }
+
+
     echo <<<_PROF
                     <div class="user-info">
                         <div class="avatar-div">
@@ -36,7 +48,8 @@ if ($result->rowCount() == 0) {
                         </div>
                         <div class="user-text">
                             <h4 style="margin-top: 0;">$profile_user</h4>
-                            <p class="text">$text</p>  
+                            <p class="text">$text</p>
+                            $friends_tho
                         </div>
                     </div>
     _PROF;

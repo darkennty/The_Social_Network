@@ -18,7 +18,7 @@ function checkPass() {
     let check_str = $('#rep-passwd').val();
     let flag = true;
 
-    if (str.length <= 8 || !(/[A-Z]+/.test(str)) || !(/[a-z]+/.test(str)) || !(/[0-9]+/.test(str))) {
+    if (str.length < 8 || !(/[A-Z]+/.test(str)) || !(/[a-z]+/.test(str)) || !(/[0-9]+/.test(str))) {
         $('#weak').html('Weak! Bill Collector can easily get it! (Use upper-, lowercase letters and numbers, dummy..)');
         $('#submit').prop('disabled', true);
         flag = false;
@@ -32,7 +32,6 @@ function checkPass() {
     if (str !== check_str || str === '') {
         $('#not-match').html('Passwords don\'t match, wtf?! You might wanna check again!');
         $('#submit').prop('disabled', true);
-        flag = false;
     } else {
         $('#not-match').html('&nbsp;');
         if (flag) {
@@ -112,7 +111,6 @@ function warning(type, user, friend) {
                     { user: user,
                         friend: friend },
                     function () {
-                        console.log('sus');
                         location.reload();
                     }
                 )
@@ -172,7 +170,6 @@ function getContent(user, friend, stamp)
                         location.reload();
                     }
 
-                    console.log(data);
                     setTimeout(
                         getRequest,
                         500
@@ -183,4 +180,37 @@ function getContent(user, friend, stamp)
     }
 
     getRequest()
+}
+
+function getActionMenu(event) {
+    const field = document.querySelector("#chat-field");
+    let msg = event.target.closest('.ours');
+
+    if (msg) {
+        const x = event.clientX;
+        const y = event.clientY;
+        msg.insertAdjacentHTML(
+            'beforeend',
+            `<div class="delete-msg-btn" style="position: absolute; top: ${y}px; left: ${x}px;">
+                <button onclick="deleteMessage()">Delete message</button>
+            </div>
+            `
+        )
+
+        msg.classList.add('selected-msg');
+
+        field.removeEventListener("contextmenu", getActionMenu);
+
+        msg.addEventListener("mouseleave", function (event) {
+            $('.delete-msg-btn').remove();
+            field.addEventListener("contextmenu", getActionMenu);
+            msg.classList.remove('selected-msg');
+        });
+
+        msg.addEventListener("scroll", function (event) {
+            $('.delete-msg-btn').remove();
+            field.addEventListener("contextmenu", getActionMenu);
+            msg.classList.remove('selected-msg');
+        });
+    }
 }

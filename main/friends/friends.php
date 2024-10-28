@@ -47,11 +47,19 @@ if ($result->rowCount() != 0) {
         _BLUD;
     }
 } else {
-    echo <<<_NOFRIENDS
+    if ($_GET['view'] === $_SESSION['user'] || !isset($_GET['view'])) {
+        echo <<<_NOFRIENDS
             <div class="centered-text" style="position: relative; bottom: 10%">
                 <p>You don't have any friends, man.</p>
             </div>
-    _NOFRIENDS;
+        _NOFRIENDS;
+    } else {
+        echo <<<_NOFRIENDS
+            <div class="centered-text" style="position: relative; bottom: 10%">
+                <p>This blud don't have any friends.</p>
+            </div>
+        _NOFRIENDS;
+    }
 }
 
 echo <<<_FIN

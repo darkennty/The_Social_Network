@@ -49,11 +49,19 @@ if ($result->rowCount() != 0) {
         _BLUD;
     }
 } else {
-    echo <<<_NOBEACHES
+    if ($_GET['view'] === $_SESSION['user'] || !isset($_GET['view'])) {
+        echo <<<_NOBEACHES
             <div class="centered-text" style="position: relative; bottom: 10%">
                 <p>You don't have any subs, man.</p>
             </div>
-    _NOBEACHES;
+        _NOBEACHES;
+    } else {
+        echo <<<_NOBEACHES
+            <div class="centered-text" style="position: relative; bottom: 10%">
+                <p>This blud don't have any subs.</p>
+            </div>
+        _NOBEACHES;
+    }
 }
 
 echo <<<_FIN

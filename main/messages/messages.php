@@ -45,7 +45,6 @@ if ($user_result->rowCount() != 0) {
         $friend = sanitize($_GET['chatter']);
 
         if (isset($_POST['message'])) {
-            echo "sus";
             $message = sanitize($_POST['message']);
             date_default_timezone_set('Europe/Moscow');
             $date = date("Y-m-d H:i:s");
@@ -66,30 +65,52 @@ if ($user_result->rowCount() != 0) {
         if ($rowCount != 0) {
             while ($row = $result->fetch()) {
                 if ($row['author'] == $user) {
+                    $author = 'ours';
                     $align = 'flex-end';
                     $msg_color = 'dodgerblue';
                     $arrow = "border-bottom-right-radius: 0";
                 } else {
+                    $author = 'theirs';
                     $align = 'flex-start';
                     $msg_color = '#cccccc';
                     $arrow = "border-bottom-left-radius: 0";
                 }
-
                 echo <<<_MSG
                 <div style="width: 100%; display: flex; justify-content: $align">
-                    <div class='message' style="min-width: 30%; text-align: left; background-color: $msg_color; $arrow; padding: 0 5px; margin: 2px 0">
+                    <div class='message $author' style="min-width: 30%; text-align: left; background-color: $msg_color; $arrow; padding: 0 5px; margin: 2px 0">
                         <p>{$row['message']}</p>
-                        <input type="hidden" value="{$row['date']}">
+                        <input class="msg-date" type="hidden" value="{$row['date']}">
+                        <input class="msg-id" type="hidden" value="{$row['id']}">
                     </div>
                 </div>
                 _MSG;
             }
             echo <<<_SCROLL
                 <script>
+                    const field = document.querySelector("#chat-field");
+                    field.addEventListener("contextmenu", getActionMenu);
+                    field.addEventListener("contextmenu", function(event) {event.preventDefault()});
+                    
                     function scrollToBottom() {
                         const container = document.getElementById('chat-field');
                         container.scrollTop = container.scrollHeight;
-                    }        
+                    }
+                    
+                    function deleteMessage() {
+                        const id = document.querySelector('.selected-msg').lastElementChild.previousElementSibling.value;
+                        console.log(id)
+                        $.post
+                        (
+                            "deleteMessage.php",
+                            {
+                                id: id,
+                                user : '$_SESSION[user]'
+                            },
+                            function () {
+                                location.reload();
+                            }
+                        )
+                    }
                     
                     window.onload = scrollToBottom;
                     getContent('$user', '$friend', '$rowCount');
@@ -101,6 +122,9 @@ if ($user_result->rowCount() != 0) {
             <div class='centered-text'>
                 <p>No messages found. Start chatting with blud by sending any message.</p>
             </div>
+            <script>
+                getContent('$user', '$friend', '$rowCount');
+            </script>
         </div>
         _NOCHAT;
         }

@@ -31,8 +31,8 @@ if ($user_result->rowCount() != 0) {
         }
 
         echo <<<_PROF
-                                <div class="friend">
-                                    <img class="chatter_img" src='$src' alt='No_photO'><a href="messages.php?chatter=$friend&r=$randstr"><button class="chatter_link" $dis onclick="">$friend</button></a>
+                                <div class="chatter">
+                                    <img class="chatter_img" src='$src' alt='No_photO'><a class="chatter_link" href="messages.php?chatter=$friend&r=$randstr"><button style="width: 100%" $dis onclick="">$friend</button></a>
                                 </div>
         _PROF;
     }
@@ -44,12 +44,24 @@ if ($user_result->rowCount() != 0) {
     if (isset($_GET['chatter'])) {
         $friend = sanitize($_GET['chatter']);
 
+        $friend_result = querySQL("SELECT * FROM members WHERE user='$friend'");
+
+        if ($friend_result->rowCount() == 0) {
+            die("<div class='centered-text'><p style='text-align: center'>No such blud in our social network, sorry!</p><div>");
+        }
+
+        $friend_result = querySQL("SELECT * FROM friends WHERE (user='$user' AND friend='$friend') OR (friend='$user' AND user='$friend')");
+
+        if ($friend_result->rowCount() == 0) {
+            die("<div class='centered-text'><p style='text-align: center'>This user is not you blud... You can't chat with him, dumbo!</p><div>");
+        }
+
         if (isset($_POST['message'])) {
             $message = sanitize($_POST['message']);
             date_default_timezone_set('Europe/Moscow');
             $date = date("Y-m-d H:i:s");
             $result = querySQL("INSERT INTO messages (author, recipent, date, message) VALUES ('$user', '$friend', '$date', '$message')");
-            header("Location: messages.php?chatter=$friend&r=$randstr"); exit;
+            exit("<meta http-equiv='refresh' content='0; url= messages.php?chatter=$friend&r=$randstr'>");
         }
 
         echo <<< _INFO
@@ -133,11 +145,11 @@ if ($user_result->rowCount() != 0) {
         <div class='send-section'>
             <form method="post" action="messages.php?chatter=$friend&r=$randstr">
                 <div id="message-field">
-                    <input type="text" name="message" autocomplete="off" autofocus placeholder="Send a message to your blud..." onkeyup="checkInput(this)">
-                    <input type="hidden" name="user" value="$user">
+                    <input type="text" name="message" autocomplete="off" autofocus placeholder="Send a message to your blud..." onfocus="getSavedValue(this); checkInput(this);" onkeyup="checkInput(this); saveValue(this)">
                     <input type="hidden" name="friend" value="$friend">
+                    <input type="hidden" name="user" value="$user">
                 </div>
-                <button id="send-btn" type="submit" disabled="disabled">Send</button>
+                <button id="send-btn" type="submit" disabled="disabled" onclick="deleteValue('$friend');">Send</button>
             </form>
         </div>
         _SEND;

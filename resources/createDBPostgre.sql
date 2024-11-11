@@ -1,0 +1,5 @@
+CREATE ROLE admin LOGIN ENCRYPTED PASSWORD 'password';
+
+CREATE DATABASE TheSocialNetwork OWNER admin;
+
+CREATE SCHEMA the_social_network AUTHORIZATION admin;

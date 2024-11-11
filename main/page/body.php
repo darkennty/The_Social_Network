@@ -17,6 +17,18 @@ if ($location == "&nbsp;" || $location == "") {
 if ($logged) {
     echo <<<_MENU
         <div id="app-info">
+            <div id="burger-menu">
+                <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
+                <label for="burger-checkbox" class="burger"></label>
+                <ul class="menu-list">
+                    <li><a href="../profile/profile.php?r=$randstr&view=$user" class="menu-item"><span class="btn-text">My page</span></a>
+                    <li><a href="../friends/friends.php?r=$randstr&view=$user" class="menu-item"><span class="btn-text">My bluds</span></a>
+                    <li><a href="../subscribers/subscribers.php?r=$randstr&view=$user" class="menu-item"><span class="btn-text">My subway subs</span></a>
+                    <li><a href="../members/members.php?r=$randstr" class="menu-item"><span class="btn-text">My members</span></a>
+                    <li><a href="../messages/messages.php?r=$randstr" class="menu-item"><span class="btn-text">My messages</span></a>
+                    <li><a href="../logout/logout_page.php?r=$randstr" class="menu-item"><span class="btn-text">My log out</span></a>
+                </ul>
+            </div>
             <p class="hello">What's up, $user</p>
             <p class="loc">$close_button $location</p>
         </div>
@@ -51,7 +63,7 @@ _AUTH;
 if ($_COOKIE['location'] == 'My MATInder') {
     echo <<<_BLANK
                 <div class="centered-text">
-                    <p>Dive into your bludlife by choosing options on the sidebar</p>
+                    <p style="text-align: center">Dive into your bludlife by choosing options on the sidebar</p>
                 </div>
             </div>
         </div>

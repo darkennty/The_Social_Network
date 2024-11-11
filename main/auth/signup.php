@@ -45,17 +45,17 @@ echo <<<_SIGN
                 <div class="error">$error</div>
                 <div id="username">
                     <label>Username: </label>
-                    <input type="text" maxlength="20" name="user" onblur="checkUser(this)" onkeydown="checkName(event)">
+                    <input class="username-input" type="text" maxlength="20" name="user" onblur="checkUser(this)" onkeydown="checkName(event)">
                 </div>
                 <div id='used'>&nbsp;</div>
                 <div>
                     <label>Password: </label>
-                    <input id="passwd" type="password" maxlength="20" name="pass" onkeyup="checkPass()">
+                    <input class="password-input" type="password" maxlength="20" name="pass" onkeyup="checkPass()">
                 </div>
                 <div id='weak'>&nbsp;</div>
                 <div>
                     <label>Repeat password: </label>
-                    <input id="rep-passwd" type="password" maxlength="20" name="repeat-pass" onkeyup="checkPass()">
+                    <input class="password-input" type="password" maxlength="20" name="repeat-pass" onkeyup="checkPass()">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
                 <div id='not-match'>&nbsp;</div>

@@ -4,7 +4,7 @@ session_start();
 require_once '../properties.php';
 
 $randstr = substr(md5(rand()), 0, 7);
-$loc = "MATInder: My guest";
+$location = "MATInder: My guest";
 $logged = false;
 
 if (isset($_SESSION['user'])) {
@@ -13,7 +13,7 @@ if (isset($_SESSION['user'])) {
 }
 
 if (isset($_COOKIE['location'])) {
-    $loc = $_COOKIE['location'];
+    $location = $_COOKIE['location'];
 }
 
 echo <<<_INIT
@@ -28,10 +28,10 @@ echo <<<_INIT
         <link rel='stylesheet' href='../../style.css' type='text/css'>
         <script src='../../jquery-2.2.4.min.js'></script>
         <script src="../../app.js"></script>
-        <title>$loc</title>
+        <title>$location</title>
     </head>
     <body>
         <div id="header">
-            <a href="../page/home.php?r=$randstr"><img id="logo-pic" src="../../images/logo.png" alt=""><span class="brand-name">nder. Find your blud.</span></a>
+            <a href="../page/home.php?r=$randstr"><img id="logo-pic" src="../../images/logo.png" alt=""><span class="brand-name">nder. <span id="motto-transition"><br>&nbsp;</span>Find your blud.</span></a>
         </div>
 _INIT;

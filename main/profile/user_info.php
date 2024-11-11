@@ -48,7 +48,7 @@ if ($result->rowCount() == 0) {
                         </div>
                         <div class="user-text">
                             <h4 style="margin-top: 0;">$profile_user</h4>
-                            <p class="text">$text</p>
+                            <p class="about-me-text">$text</p>
                             $friends_tho
                         </div>
                     </div>

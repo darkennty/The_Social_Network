@@ -172,7 +172,7 @@ function getContent(user, friend, stamp)
 
                     setTimeout(
                         getRequest,
-                        500
+                        1000
                     );
                 }
             }
@@ -214,3 +214,39 @@ function getActionMenu(event) {
         });
     }
 }
+try {
+    const burger = document.querySelector('.burger');
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+    });
+} catch {}
+
+function viewChange() {
+    if ($('.password-input').attr('type') == 'password'){
+        $('.password-control').addClass('view');
+        $('.password-input').attr('type', 'text');
+    } else {
+        $('.password-control').removeClass('view');
+        $('.password-input').attr('type', 'password');
+    }
+}
+
+function saveValue(e) {
+    let friend = e.nextElementSibling.value
+    let val = e.value;
+    localStorage.setItem(friend, val);
+}
+
+function getSavedValue(v) {
+    let friend = v.nextElementSibling.value
+    let elem = localStorage.getItem(friend)
+    if (elem === null) {
+        return "";
+    }
+    v.value = elem
+}
+
+function deleteValue(v) {
+    localStorage.removeItem(v)
+}
+

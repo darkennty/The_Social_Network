@@ -49,14 +49,14 @@ echo <<<_LOG
                 <div class="error">$error</div>
                 <div id="username" class="field">
                     <label>Username: </label>
-                    <input type="text" maxlength="20" name="user" value='$user'>
+                    <input class="username-input" type="text" maxlength="20" name="user" value='$user'>
                 </div>
                 <div>&nbsp;</div>
                 <div class="field">
                     <label>Password: </label>
-                    <input type="password" maxlength="20" name="pass" value='$pass'>
+                    <input class="password-input" type="password" maxlength="20" name="pass" value='$pass'><a href="#" class="password-control" style="margin: 0;" onclick="viewChange()"></a>
                 </div>
-                <div>&nbsp;</div>
+<!--                <div>&nbsp;</div>-->
                 <div style="height: 27.2px;">&nbsp;</div>
                 <div>&nbsp;</div>
                 <button id="sumbit" type="submit">Log in</button>

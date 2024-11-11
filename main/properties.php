@@ -1,8 +1,16 @@
 <?php
 $host = 'localhost';
-$data = 'the_social_network';
-$user = 'nikita';
-$pass = 'Nikita76';
+$env = file_get_contents(__DIR__ . '/.env');
+$lines = explode("\n",$env);
+foreach($lines as $line){
+    preg_match("/([^#]+)=(.*)/",$line,$matches);
+    if(isset($matches[2])){
+        putenv(trim($line));
+    }
+}
+$data = getenv("DATA");
+$user = getenv("USER");
+$pass = getenv("PASS");
 $chrs = 'utf8mb4';
 $attr = "mysql:host=$host;dbname=$data;charset=$chrs";
 $opts =
@@ -43,5 +51,6 @@ function sanitize($str): array|false|string
     $str = stripslashes($str);
 
     $result = $pdo->quote($str);
+    $result = str_replace("/\n/g", '<br/>', $result);
     return str_replace("'", "", $result);
 }

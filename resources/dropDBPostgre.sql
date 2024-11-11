@@ -1,0 +1,7 @@
+DROP DATABASE IF EXISTS TheSocialNetwork;
+
+DROP SCHEMA IF EXISTS the_social_network CASCADE;
+
+DROP ROLE IF EXISTS admin;
+
+-- DROP USER IF EXISTS "nikita";
